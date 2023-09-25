@@ -1,0 +1,13 @@
+.ant-tooltip-inner {
+  white-space: pre-line;
+}
+.btn-create-admin {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  gap: 1em;
+}
+#register {
+  margin-left: 14em;
+}

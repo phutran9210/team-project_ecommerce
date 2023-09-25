@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logos/logo-icon-black.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Master & Dynamic</title>
+    <script
+      src="https://kit.fontawesome.com/1701f4df25.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- ----------------------------fonts------------------------------------->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap"
+      rel="stylesheet"
+    />
+    <!-------------------------------slick------------------------------------->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      charset="UTF-8"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+    />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      var prevScrollpos = window.pageYOffset; //Store the previous scroll position
+      var isAtTop = true; //Store whether the user is at the top of the page
+
+      window.onscroll = function () {
+        var currentScrollPos = window.pageYOffset; //Store the current scroll position
+
+        // If the previous scroll position is greater than the current scroll position, it means the user is scrolling up.
+        if (prevScrollpos > currentScrollPos) {
+          document.getElementById("navbar").style.top = "0";
+
+          if (currentScrollPos === 0) {
+            //This condition checks if the current scroll position is at the top of the page.
+            // Reached the top
+            document.getElementById("navbar").style.backgroundColor =
+              "transparent";
+            isAtTop = true;
+          }
+        } else {
+          // Scrolling down
+          if (isAtTop) {
+            // Just started scrolling down from the top but hasn't reached the top yet
+            document.getElementById("navbar").style.backgroundColor =
+              "rgba(0, 0, 0, 0.7)";
+            isAtTop = false;
+          }
+          document.getElementById("navbar").style.top = "-110px";
+        }
+        prevScrollpos = currentScrollPos;
+      };
+    </script>
+  </body>
+</html>
