@@ -7,6 +7,7 @@ import { ProductModule } from './product/product.module';
 import { CartsModule } from './carts/carts.module';
 import { DiscountModule } from './discount/discount.module';
 import { PaymentModule } from './payment/payment.module';
+import { ActivityLogModule } from './activity_log/activity_log.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { PaymentModule } from './payment/payment.module';
     CartsModule,
     DiscountModule,
     PaymentModule,
+    ActivityLogModule,
   ],
   controllers: [AppController],
   providers: [AppService],

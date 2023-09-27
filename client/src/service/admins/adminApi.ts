@@ -42,3 +42,8 @@ export const adminCategoriesAnalyst = async () => {
 export const adminOrderTransportAnalyst = async () => {
   return request.get(`/payment/dash-board/analyst`);
 };
+
+// api log
+export const getLogger = async (page: number, rowsPerPage: number) => {
+  return request.get(`/activity?page=${page}&rowsPerPage=${rowsPerPage}`);
+};

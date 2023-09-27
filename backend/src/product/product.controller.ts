@@ -26,6 +26,7 @@ import {
   PayloadEditProduct,
   EditProductIdDto,
 } from './dto/payloadProduct.dto';
+import { LoggingInterceptor } from '../activity_log/interceptor/LoggingIntercepter.interceptor';
 
 @Controller('products')
 export class ProductController {
@@ -40,6 +41,7 @@ export class ProductController {
       { name: 'primary_img', maxCount: 1 },
       { name: 'cover_img', maxCount: 1 },
     ]),
+    LoggingInterceptor
   )
   async uploadForm(
     @Req() req: Request,
@@ -116,6 +118,7 @@ export class ProductController {
 
   @Patch('admin/edit/:productId')
   @UseGuards(JwtAuthGuardCheck)
+  @UseInterceptors(LoggingInterceptor)
   async editProduct(
     @Param('productId') productId: string,
     @Body() payload: any,

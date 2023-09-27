@@ -1,7 +1,8 @@
 // src/entities/user.entity.ts
 
-import { Entity, PrimaryColumn, Column, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, PrimaryColumn, Column, ManyToMany, JoinTable, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { Role } from './role.entity';
+import {ActivityLog } from "../../activity_log/entities/activity.entity"
 
 @Entity('users')
 export class User {
@@ -43,4 +44,7 @@ export class User {
     inverseJoinColumn: { name: 'role_id', referencedColumnName: 'role_id' },
   })
   roles: Role[];
+
+  @OneToMany(() => ActivityLog, (activityLog) => activityLog.user)
+  activities: ActivityLog[];
 }

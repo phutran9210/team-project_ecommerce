@@ -9,6 +9,7 @@ import {
   GiftOutlined,
   ShoppingCartOutlined,
   BarsOutlined,
+  NodeIndexOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Button, Layout, Menu, message, theme } from "antd";
@@ -25,6 +26,7 @@ import { ROUTER_PATH } from "../../constants";
 import PieChart from "./dashboard/DashBoard";
 import { productIdToHomeSelector } from "../../store/selectors/productSelector";
 import FormEdit from "./products/editProduct/mainTable/formEdit/FormEdit";
+import ActivityLogTable from "./website/logger/ActivityLogTable ";
 
 const { Header, Content, Sider } = Layout;
 
@@ -61,7 +63,9 @@ const items: MenuItem[] = [
   getItem("Order", "10", <ShoppingCartOutlined />, [
     getItem("List Orders", "11", <BarsOutlined />),
   ]),
-  getItem("Website", "15", <SettingOutlined />, []),
+  getItem("Website", "15", <SettingOutlined />, [
+    getItem("Logger", "16", <NodeIndexOutlined />),
+  ]),
 ];
 
 const AdminHome: React.FC = () => {
@@ -119,6 +123,8 @@ const AdminHome: React.FC = () => {
         return <ListOrders />;
       case "edit-product":
         return <FormEdit />;
+      case "16":
+        return <ActivityLogTable />;
 
       default:
         return <PieChart />;

@@ -10,10 +10,11 @@ import {
   ValidationPipe,
   UseGuards,
   Res,
+  UseInterceptors,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { UsersService } from './users.service';
-
+import { LoggingInterceptor } from '../activity_log/interceptor/LoggingIntercepter.interceptor';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserSignUpData } from './dto/userPipe';
 import { JwtAuthGuardCheck } from '../guard/JwtAuthGuardCheck.guard';
@@ -23,6 +24,8 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
   //Đăng nhập
   @Post()
+  @UseGuards(JwtAuthGuardCheck)
+  @UseInterceptors(LoggingInterceptor)
   @UsePipes(new ValidationPipe())
   async create(
     @Body() userSignupData: UserSignUpData,
@@ -42,6 +45,7 @@ export class UsersController {
   //chỉnh sửa user
   @Patch(':id')
   @UseGuards(JwtAuthGuardCheck)
+  @UseInterceptors(LoggingInterceptor)
   async updateUser(
     @Req() req: Request,
     @Param('id') id: string,

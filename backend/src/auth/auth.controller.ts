@@ -61,8 +61,6 @@ export class AuthController {
   @UseGuards(JwtGuardCheck)
   @TokenName('LOGIN_INFO')
   async guestLogin(@Req() req: Request, @Res() res: Response) {
-    console.log(req.body);
-
     return await this.authService.checkGuestLogin(req, res);
   }
 }
